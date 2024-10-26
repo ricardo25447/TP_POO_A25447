@@ -12,6 +12,7 @@ namespace TP_POO_A25447
         public string TenantsFullName { get; set; }
         public string TenantsContract { get; set; }
         public string TenantsCCNumber { get; set; }
+        public List<Contract> contracts { get; set; }
 
         //constructor
         public Tenants(string fullName, string contract, string cCNumber)
@@ -19,6 +20,7 @@ namespace TP_POO_A25447
             TenantsFullName = fullName;
             TenantsContract = contract;
             TenantsCCNumber = cCNumber;
+            contracts = new List<Contract>();
         }
     }
 }
