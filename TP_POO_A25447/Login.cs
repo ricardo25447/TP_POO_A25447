@@ -19,14 +19,13 @@ namespace TP_POO_A25447
         }
 
         //authentication
-        public bool Authenticate()
+        public bool AuthenticateAdmin()
         {
-            if (User_Login == "admin" && Password_Login == "password123")
-            {
-                return true; //authentication successful
-            }
-
-            return false; // authentication denied
+            return User_Login == "admin" && Password_Login == "password123";
+        }
+        public bool AuthenticateUser() 
+        {
+            return User_Login == "inquilino" && Password_Login == "password123";
         }
     }
-}
+    }

@@ -11,10 +11,13 @@ namespace TP_POO_A25447
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            Login login = new Login("admin", "password123");
-            bool auth = login.Authenticate();
+            string user_Login = txt_user.Text;
+            string user_Password = txt_password.Text;
 
-            if (auth)
+            Login login = new Login(user_Login, user_Password);
+
+
+            if (login.AuthenticateAdmin())
             {
                 MessageBox.Show("Login como Admin efetuado com sucesso!");
 
@@ -23,7 +26,7 @@ namespace TP_POO_A25447
                 formAdmin.Show();
                 this.Hide(); //hide log in
             }
-            else if (auth)
+            else if (login.AuthenticateUser())
             {
                 MessageBox.Show("Login como Inquilino efetuado com sucesso!");
 
@@ -41,7 +44,6 @@ namespace TP_POO_A25447
 
                 txt_user.Focus();
             }
-
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
