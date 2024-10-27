@@ -28,7 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btn_showcontracts = new Button();
             SuspendLayout();
+            // 
+            // btn_showcontracts
+            // 
+            btn_showcontracts.Location = new Point(12, 12);
+            btn_showcontracts.Name = "btn_showcontracts";
+            btn_showcontracts.Size = new Size(75, 23);
+            btn_showcontracts.TabIndex = 0;
+            btn_showcontracts.Text = "Contratos";
+            btn_showcontracts.UseVisualStyleBackColor = true;
+            btn_showcontracts.Click += btn_showcontracts_Click;
             // 
             // FormAdmin
             // 
@@ -36,11 +47,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
+            Controls.Add(btn_showcontracts);
             Name = "FormAdmin";
             Text = "FormAdmin";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btn_showcontracts;
     }
 }

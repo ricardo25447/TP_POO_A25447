@@ -11,10 +11,10 @@ namespace TP_POO_A25447
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            string user = txt_user.Text;
-            string password = txt_password.Text;
+            Login login = new Login("admin", "password123");
+            bool auth = login.Authenticate();
 
-            if (user == "admin" && password == "admin123")
+            if (auth)
             {
                 MessageBox.Show("Login como Admin efetuado com sucesso!");
 
@@ -23,7 +23,7 @@ namespace TP_POO_A25447
                 formAdmin.Show();
                 this.Hide(); //hide log in
             }
-            else if (user == "inquilino" && password == "inquilino123")
+            else if (auth)
             {
                 MessageBox.Show("Login como Inquilino efetuado com sucesso!");
 
@@ -55,6 +55,11 @@ namespace TP_POO_A25447
         }
 
         private void txt_user_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }

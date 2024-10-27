@@ -10,15 +10,15 @@ namespace TP_POO_A25447
     {
         //attributes
         public string TenantsFullName { get; set; }
-        public string TenantsContract { get; set; }
+        public string TenantsPhone { get; set; }
         public string TenantsCCNumber { get; set; }
         public List<Contract> contracts { get; set; }
 
         //constructor
-        public Tenants(string fullName, string contract, string cCNumber)
+        public Tenants(string fullName, string tenantsPhone, string cCNumber)
         {
             TenantsFullName = fullName;
-            TenantsContract = contract;
+            TenantsPhone = tenantsPhone;
             TenantsCCNumber = cCNumber;
             contracts = new List<Contract>();
         }

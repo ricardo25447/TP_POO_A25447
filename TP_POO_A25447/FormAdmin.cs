@@ -16,5 +16,10 @@ namespace TP_POO_A25447
         {
             InitializeComponent();
         }
+
+        private void btn_showcontracts_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
