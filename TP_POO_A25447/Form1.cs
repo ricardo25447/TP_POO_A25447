@@ -17,9 +17,9 @@ namespace TP_POO_A25447
             Login login = new Login(user_Login, user_Password);
 
 
-            if (login.AuthenticateAdmin())
+            if (login.AuthenticateAdmin() && admin_checkbox.Checked)
             {
-                MessageBox.Show("Login como Admin efetuado com sucesso!");
+                MessageBox.Show("Senhorio " + user_Login + " fez log in com sucesso!");
 
                 //admin interface
                 FormAdmin formAdmin = new FormAdmin();
@@ -28,13 +28,18 @@ namespace TP_POO_A25447
             }
             else if (login.AuthenticateUser())
             {
-                MessageBox.Show("Login como Inquilino efetuado com sucesso!");
+                MessageBox.Show("Inquilino " + user_Login + " fez log in com sucesso!");
 
                 //tanant interface
                 FormTenants formTenants = new FormTenants();
                 formTenants.Show();
                 this.Hide(); //hide log in
             }
+            else if (!admin_checkbox.Checked)
+            {
+                MessageBox.Show("Caso seja senhorio, por favor selecione a opção 'Senhorio'!");
+            }
+
             else
             {
                 MessageBox.Show("Nome de utilizador ou palavra-passe incorretos.", "Erro de autenticação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -64,6 +69,11 @@ namespace TP_POO_A25447
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_info_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Caso não tenha conta, contacte o senhorio.", "Informação para novos utilizadores", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

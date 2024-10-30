@@ -21,11 +21,11 @@ namespace TP_POO_A25447
         //authentication
         public bool AuthenticateAdmin()
         {
-            return User_Login == "admin" && Password_Login == "password123";
+            return User_Login == "Ricardo Admin" && Password_Login == "password123";
         }
         public bool AuthenticateUser() 
         {
-            return User_Login == "inquilino" && Password_Login == "password123";
+            return User_Login == "Ricardo Marques" && Password_Login == "password123";
         }
     }
     }

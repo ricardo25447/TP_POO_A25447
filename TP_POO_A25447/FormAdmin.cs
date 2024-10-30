@@ -21,5 +21,14 @@ namespace TP_POO_A25447
         {
 
         }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+
+            // Fechar o Form atual
+            this.Close();
+        }
     }
 }
