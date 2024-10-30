@@ -31,6 +31,7 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            btn_logout = new Button();
             SuspendLayout();
             // 
             // button1
@@ -60,12 +61,23 @@
             button3.Text = "Consultar Documentos";
             button3.UseVisualStyleBackColor = true;
             // 
+            // btn_logout
+            // 
+            btn_logout.Location = new Point(12, 192);
+            btn_logout.Name = "btn_logout";
+            btn_logout.Size = new Size(90, 34);
+            btn_logout.TabIndex = 3;
+            btn_logout.Text = "LOGOUT";
+            btn_logout.UseVisualStyleBackColor = true;
+            btn_logout.Click += btn_logout_Click;
+            // 
             // FormTenants
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(529, 238);
+            Controls.Add(btn_logout);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -80,5 +92,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button btn_logout;
     }
 }
