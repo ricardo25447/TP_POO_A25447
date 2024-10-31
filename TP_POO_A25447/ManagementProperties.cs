@@ -10,32 +10,25 @@ using System.Windows.Forms;
 
 namespace TP_POO_A25447
 {
-    public partial class FormAdmin : Form
+    public partial class ManagementProperties : Form
     {
-        public FormAdmin()
+        public ManagementProperties()
         {
             InitializeComponent();
         }
 
-        private void btn_showcontracts_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_back_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
+            FormAdmin formAdmin = new FormAdmin();
+            formAdmin.Show();
 
             // Fechar o Form atual
             this.Close();
         }
 
-        private void btn_showproperty_Click(object sender, EventArgs e)
+        private void btn_editproperty_Click(object sender, EventArgs e)
         {
-            ManagementProperties formManagementProperties = new ManagementProperties();
-            formManagementProperties.Show();
-            this.Hide(); //hide log in
+
         }
     }
 }

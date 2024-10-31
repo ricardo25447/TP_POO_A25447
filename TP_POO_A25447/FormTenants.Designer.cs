@@ -28,44 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btn_showcontracts_T = new Button();
+            btn_showincomes_T = new Button();
+            btn_showdocuments_T = new Button();
             btn_logout = new Button();
             SuspendLayout();
             // 
-            // button1
+            // btn_showcontracts_T
             // 
-            button1.Location = new Point(12, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(204, 34);
-            button1.TabIndex = 0;
-            button1.Text = "Consultar Contratos";
-            button1.UseVisualStyleBackColor = true;
+            btn_showcontracts_T.Location = new Point(8, 7);
+            btn_showcontracts_T.Margin = new Padding(2);
+            btn_showcontracts_T.Name = "btn_showcontracts_T";
+            btn_showcontracts_T.Size = new Size(143, 25);
+            btn_showcontracts_T.TabIndex = 0;
+            btn_showcontracts_T.Text = "Consultar Contratos";
+            btn_showcontracts_T.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btn_showincomes_T
             // 
-            button2.Location = new Point(12, 52);
-            button2.Name = "button2";
-            button2.Size = new Size(204, 34);
-            button2.TabIndex = 1;
-            button2.Text = "Consultar Rendas";
-            button2.UseVisualStyleBackColor = true;
+            btn_showincomes_T.Location = new Point(8, 36);
+            btn_showincomes_T.Margin = new Padding(2);
+            btn_showincomes_T.Name = "btn_showincomes_T";
+            btn_showincomes_T.Size = new Size(143, 25);
+            btn_showincomes_T.TabIndex = 1;
+            btn_showincomes_T.Text = "Consultar Rendas";
+            btn_showincomes_T.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btn_showdocuments_T
             // 
-            button3.Location = new Point(12, 92);
-            button3.Name = "button3";
-            button3.Size = new Size(204, 34);
-            button3.TabIndex = 2;
-            button3.Text = "Consultar Documentos";
-            button3.UseVisualStyleBackColor = true;
+            btn_showdocuments_T.Location = new Point(8, 65);
+            btn_showdocuments_T.Margin = new Padding(2);
+            btn_showdocuments_T.Name = "btn_showdocuments_T";
+            btn_showdocuments_T.Size = new Size(143, 25);
+            btn_showdocuments_T.TabIndex = 2;
+            btn_showdocuments_T.Text = "Consultar Documentos";
+            btn_showdocuments_T.UseVisualStyleBackColor = true;
             // 
             // btn_logout
             // 
-            btn_logout.Location = new Point(12, 192);
+            btn_logout.Location = new Point(11, 107);
+            btn_logout.Margin = new Padding(2);
             btn_logout.Name = "btn_logout";
-            btn_logout.Size = new Size(90, 34);
+            btn_logout.Size = new Size(63, 25);
             btn_logout.TabIndex = 3;
             btn_logout.Text = "LOGOUT";
             btn_logout.UseVisualStyleBackColor = true;
@@ -73,15 +77,14 @@
             // 
             // FormTenants
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(529, 238);
+            ClientSize = new Size(370, 143);
             Controls.Add(btn_logout);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Margin = new Padding(4, 5, 4, 5);
+            Controls.Add(btn_showdocuments_T);
+            Controls.Add(btn_showincomes_T);
+            Controls.Add(btn_showcontracts_T);
             Name = "FormTenants";
             Text = "FormTenants";
             ResumeLayout(false);
@@ -89,9 +92,9 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btn_showcontracts_T;
+        private Button btn_showincomes_T;
+        private Button btn_showdocuments_T;
         private Button btn_logout;
     }
 }

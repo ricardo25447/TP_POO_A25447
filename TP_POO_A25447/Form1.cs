@@ -17,7 +17,7 @@ namespace TP_POO_A25447
             Login login = new Login(user_Login, user_Password);
 
 
-            if (login.AuthenticateAdmin() && admin_checkbox.Checked)
+            if (login.AuthenticateAdmin())
             {
                 MessageBox.Show("Senhorio " + user_Login + " fez log in com sucesso!");
 
@@ -35,9 +35,9 @@ namespace TP_POO_A25447
                 formTenants.Show();
                 this.Hide(); //hide log in
             }
-            else if (!admin_checkbox.Checked)
+            else if (string.IsNullOrWhiteSpace(user_Login) || string.IsNullOrWhiteSpace(user_Password))
             {
-                MessageBox.Show("Caso seja senhorio, por favor selecione a opção 'Senhorio'!");
+                MessageBox.Show("Preencha os campos obrigatórios.", "Erro de autenticação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             else
@@ -73,7 +73,7 @@ namespace TP_POO_A25447
 
         private void btn_info_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Caso não tenha conta, contacte o senhorio.", "Informação para novos utilizadores", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Caso não tenha conta, contacte o seu senhorio.", "Informação para novos utilizadores", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
