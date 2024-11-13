@@ -21,11 +21,67 @@ namespace TP_POO_A25447
         //authentication
         public bool AuthenticateAdmin()
         {
-            return User_Login == "Ricardo Admin" && Password_Login == "password123";
+            string landlordPath = @"C:\TP_POO_A25447\landlord.txt"; // file path
+
+            if (File.Exists(landlordPath))
+            {
+                var Line = File.ReadAllLines(landlordPath); // Lê todas as linhas do ficheiro
+
+                foreach (var line in Line)
+                {
+                    // separate user and pw with ","
+                    var separate = line.Split(',');
+                    if (separate.Length == 2) // line in the correct format
+                    {
+                        var fileUsername = separate[0].Replace("Username: ", "").Trim();
+                        var filePassword = separate[1].Replace("Password: ", "").Trim();
+
+                        // match username & password
+                        if (fileUsername == User_Login && filePassword == Password_Login)
+                        {
+                            return true; // auth successfully
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ficheiro de autenticação do senhorio não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false; // auth fail
         }
-        public bool AuthenticateUser() 
+
+        public bool AuthenticateUser()
         {
-            return User_Login == "Ricardo Marques" && Password_Login == "password123";
+            string personspath = @"C:\TP_POO_A25447\createpersons.txt";
+
+            if (File.Exists(personspath))
+            {
+                var Line = File.ReadAllLines(personspath);
+
+                foreach (var line in Line)
+                {
+                    // separate user and pw with ","
+                    var separate = line.Split(',');
+                    if (separate.Length == 2) // line in the correct format
+                    {
+
+                        var fileUsername = separate[0].Replace("Username: ", "").Trim();
+                        var filePassword = separate[1].Replace("Password: ", "").Trim();
+
+                        // match username & password
+                        if (fileUsername == User_Login && filePassword == Password_Login)
+                        {
+                            return true; // auth successfully
+                        }
+                    }
+                }
+            }
+
+            return false; // auth fail
         }
+
     }
-    }
+}
+

@@ -37,5 +37,12 @@ namespace TP_POO_A25447
             formManagementProperties.Show();
             this.Hide(); //hide log in
         }
+
+        private void managepersons_Click(object sender, EventArgs e)
+        {
+            ManagePersonsForm ManagementPersons= new ManagePersonsForm();
+            ManagementPersons.Show();
+            this.Hide(); //hide log in
+        }
     }
 }

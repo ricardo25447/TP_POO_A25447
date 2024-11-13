@@ -19,7 +19,7 @@ namespace TP_POO_A25447
 
             if (login.AuthenticateAdmin())
             {
-                MessageBox.Show("Senhorio " + user_Login + " fez log in com sucesso!");
+                MessageBox.Show("Senhorio " + user_Login + ", fez log in com sucesso!");
 
                 //admin interface
                 FormAdmin formAdmin = new FormAdmin();
@@ -28,7 +28,7 @@ namespace TP_POO_A25447
             }
             else if (login.AuthenticateUser())
             {
-                MessageBox.Show("Inquilino " + user_Login + " fez log in com sucesso!");
+                MessageBox.Show("Inquilino " + user_Login + ", fez log in com sucesso!");
 
                 //tanant interface
                 FormTenants formTenants = new FormTenants();
