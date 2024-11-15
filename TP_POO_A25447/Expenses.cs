@@ -14,6 +14,7 @@ namespace TP_POO_A25447
         public double AmountOfExpense { get; set; }
 
         public DateTime DateOfExpense { get; set; }
+        public List<Property> Property { get; set; }
 
         //constructor
         public Expenses(string typeOfExpense, double amountOfExpense, DateTime dateOfExpense)
@@ -21,6 +22,7 @@ namespace TP_POO_A25447
             TypeOfExpense = typeOfExpense;
             AmountOfExpense = amountOfExpense;
             DateOfExpense = dateOfExpense;
+            Property = new List<Property>();
         }
     }
 }

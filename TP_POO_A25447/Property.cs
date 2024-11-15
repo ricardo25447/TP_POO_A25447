@@ -11,22 +11,23 @@ namespace TP_POO_A25447
     public class Property
     {
         //attributes
-        public string PropertyAdress { get; set; }
         public string PropertyType { get; set; }
         public double PropertyPrice { get; set; }
-        public District ID_District { get; set; }
-        public Parish ID_Parish { get; set; }
-        public Municipality ID_Municipality { get; set; }
+        public List<District> ID_District { get; set; }
+        public List<Parish> ID_Parish { get; set; }
+        public List<Municipality> ID_Municipality { get; set; }
         public List<Expenses> Expenses { get; set; }
         public List<Document> Documents { get; set; }
 
 
         //constructor
-        public Property(string propertyAdress, string propertyType, double propertyPrice)
+        public Property(string propertyType, double propertyPrice)
         {
-            PropertyAdress = propertyAdress;
             PropertyType = propertyType;
             PropertyPrice = propertyPrice;
+            ID_District = new List<District>();
+            ID_Parish = new List<Parish>();
+            ID_Municipality = new List<Municipality>();
             Expenses = new List<Expenses>();
             Documents = new List<Document>();
 

@@ -16,15 +16,7 @@ namespace TP_POO_A25447
         {
             InitializeComponent();
         }
-        private void adduser_txt_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void addpassword_txt_TextChanged(object sender, EventArgs e)
-        {
-            addpassword_txt.PasswordChar = '*';
-        }
 
         private void btn_addaccount_Click(object sender, EventArgs e)
         {
@@ -68,6 +60,14 @@ namespace TP_POO_A25447
             {
                 MessageBox.Show("Continue a criação da conta.");
             }
+        }
+        private void addpassword_txt_TextChanged(object sender, EventArgs e)
+        {
+            addpassword_txt.PasswordChar = '*';
+        }
+        private void adduser_txt_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
