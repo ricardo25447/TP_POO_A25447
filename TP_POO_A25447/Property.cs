@@ -13,6 +13,7 @@ namespace TP_POO_A25447
         //attributes
         public string PropertyType { get; set; }
         public double PropertyPrice { get; set; }
+        public List<Income> IncomeAmountPaid { get; set; }
         public List<District> ID_District { get; set; }
         public List<Parish> ID_Parish { get; set; }
         public List<Municipality> ID_Municipality { get; set; }

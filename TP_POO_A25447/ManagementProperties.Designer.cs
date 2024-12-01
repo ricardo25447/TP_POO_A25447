@@ -32,7 +32,8 @@
             btn_deleteproperty = new Button();
             btn_editproperty = new Button();
             btn_back = new Button();
-            button1 = new Button();
+            btn_listproperties = new Button();
+            fontDialog1 = new FontDialog();
             SuspendLayout();
             // 
             // btn_addproperty
@@ -43,6 +44,7 @@
             btn_addproperty.TabIndex = 0;
             btn_addproperty.Text = "Adicionar Imóvel";
             btn_addproperty.UseVisualStyleBackColor = true;
+            btn_addproperty.Click += btn_addproperty_Click;
             // 
             // btn_deleteproperty
             // 
@@ -52,6 +54,7 @@
             btn_deleteproperty.TabIndex = 1;
             btn_deleteproperty.Text = "Eliminar Imóvel";
             btn_deleteproperty.UseVisualStyleBackColor = true;
+            btn_deleteproperty.Click += btn_deleteproperty_Click;
             // 
             // btn_editproperty
             // 
@@ -65,7 +68,7 @@
             // 
             // btn_back
             // 
-            btn_back.Location = new Point(12, 273);
+            btn_back.Location = new Point(12, 181);
             btn_back.Name = "btn_back";
             btn_back.Size = new Size(71, 29);
             btn_back.TabIndex = 3;
@@ -73,22 +76,24 @@
             btn_back.UseVisualStyleBackColor = true;
             btn_back.Click += btn_back_Click;
             // 
-            // button1
+            // btn_listproperties
             // 
-            button1.Location = new Point(12, 120);
-            button1.Name = "button1";
-            button1.Size = new Size(119, 29);
-            button1.TabIndex = 4;
-            button1.Text = "Consultar Imóveis";
-            button1.UseVisualStyleBackColor = true;
+            btn_listproperties.BackColor = SystemColors.ButtonHighlight;
+            btn_listproperties.Location = new Point(12, 120);
+            btn_listproperties.Name = "btn_listproperties";
+            btn_listproperties.Size = new Size(119, 29);
+            btn_listproperties.TabIndex = 0;
+            btn_listproperties.Text = "Consultar Imóveis";
+            btn_listproperties.UseVisualStyleBackColor = false;
+            btn_listproperties.Click += btn_listproperties_Click;
             // 
             // ManagementProperties
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(645, 314);
-            Controls.Add(button1);
+            ClientSize = new Size(497, 229);
+            Controls.Add(btn_listproperties);
             Controls.Add(btn_back);
             Controls.Add(btn_editproperty);
             Controls.Add(btn_deleteproperty);
@@ -104,6 +109,7 @@
         private Button btn_deleteproperty;
         private Button btn_editproperty;
         private Button btn_back;
-        private Button button1;
+        private Button btn_listproperties;
+        private FontDialog fontDialog1;
     }
 }
