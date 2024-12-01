@@ -17,10 +17,18 @@ namespace TP_POO_A25447
         public RemoveProperties()
         {
             InitializeComponent();
+
+
         }
 
         private void RemoveProperties_Load(object sender, EventArgs e)
         {
+            listView1.View = View.Details; // show details
+            listView1.Scrollable = true; // able scroll
+            listView1.FullRowSelect = true; // select all line
+            listView1.Columns.Add("Imóveis:", 900, HorizontalAlignment.Left); // fix scroll
+
+
             LoadProperties();
         }
 
@@ -32,16 +40,17 @@ namespace TP_POO_A25447
                 return;
             }
 
-            // read all lines of txt
+            // Lê todas as linhas do ficheiro
             var lines = File.ReadAllLines(propertiesPath);
-            checkedListBoxProperties.Items.Clear();
+            listView1.Items.Clear(); // Limpa os itens existentes no ListView
 
             foreach (var line in lines)
             {
-                checkedListBoxProperties.Items.Add(line.Trim()); // add a line of txt to the list
+                // Adiciona cada linha como um item no ListView
+                listView1.Items.Add(new ListViewItem(line.Trim()));
             }
 
-            if (checkedListBoxProperties.Items.Count == 0)
+            if (listView1.Items.Count == 0)
             {
                 MessageBox.Show("Não existem propriedades registadas.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -55,28 +64,28 @@ namespace TP_POO_A25447
                 return;
             }
 
-            // verify if line was sellectex
-            if (checkedListBoxProperties.SelectedItem == null)
+            // Verifica se algum item foi selecionado
+            if (listView1.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Por favor, selecione uma propriedade para remover.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // obtain the sellected line
-            string selectedLine = checkedListBoxProperties.SelectedItem.ToString();
+            // Obtém o item selecionado
+            string selectedLine = listView1.SelectedItems[0].Text;
 
-            // read all lines of txt
+            // Lê todas as linhas do ficheiro
             var lines = File.ReadAllLines(propertiesPath).ToList();
 
-            // remove the selected line
+            // Remove a linha correspondente
             if (lines.Remove(selectedLine))
             {
-                // refresh txt
+                // Atualiza o ficheiro
                 File.WriteAllLines(propertiesPath, lines);
 
                 MessageBox.Show("Propriedade removida com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // reload the list
+                // Recarrega a lista no ListView
                 LoadProperties();
             }
             else
@@ -85,20 +94,21 @@ namespace TP_POO_A25447
             }
         }
 
-        private void checkedListBoxProperties_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_back_Click(object sender, EventArgs e)
         {
             ManagementProperties formManagementProperties = new ManagementProperties();
             formManagementProperties.Show();
 
-            // close form
+            // Fecha o formulário atual
             this.Close();
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
+
 
 }
 

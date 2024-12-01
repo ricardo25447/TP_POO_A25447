@@ -28,19 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            checkedListBoxProperties = new ListBox();
             btn_removeproperty = new Button();
             btn_back = new Button();
+            listView1 = new ListView();
             SuspendLayout();
-            // 
-            // checkedListBoxProperties
-            // 
-            checkedListBoxProperties.ItemHeight = 15;
-            checkedListBoxProperties.Location = new Point(12, 12);
-            checkedListBoxProperties.Name = "checkedListBoxProperties";
-            checkedListBoxProperties.Size = new Size(967, 274);
-            checkedListBoxProperties.TabIndex = 1;
-            checkedListBoxProperties.SelectedIndexChanged += checkedListBoxProperties_SelectedIndexChanged;
             // 
             // btn_removeproperty
             // 
@@ -63,15 +54,24 @@
             btn_back.UseVisualStyleBackColor = true;
             btn_back.Click += btn_back_Click;
             // 
+            // listView1
+            // 
+            listView1.Location = new Point(12, 12);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(459, 282);
+            listView1.TabIndex = 0;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            // 
             // RemoveProperties
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(990, 338);
+            ClientSize = new Size(486, 338);
+            Controls.Add(listView1);
             Controls.Add(btn_back);
             Controls.Add(btn_removeproperty);
-            Controls.Add(checkedListBoxProperties);
             Name = "RemoveProperties";
             Text = "RemoveProperties";
             Load += RemoveProperties_Load;
@@ -79,9 +79,8 @@
         }
 
         #endregion
-
-        private ListBox checkedListBoxProperties;
         private Button btn_removeproperty;
         private Button btn_back;
+        private ListView listView1;
     }
 }
