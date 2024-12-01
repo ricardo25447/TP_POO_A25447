@@ -24,126 +24,89 @@ namespace TP_POO_A25447
 
         private void btn_removeuser_Click(object sender, EventArgs e)
         {
-
             string personspath = @"C:\TP_POO_A25447\createpersons.txt";
 
+            // verify if the file exist
             if (!File.Exists(personspath))
             {
                 MessageBox.Show("O ficheiro de contas não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Obter os dados das TextBoxes
-            string usernameToRemove = txt_removeuser.Text.Trim();
-            string ccToRemove = txt_ccremoveuser.Text.Trim();
+            // gets the values entered by the admin
+            string usernameToRemove = txt_removeuser.Text.Trim(); // username
+            string ccToRemove = txt_ccremoveuser.Text.Trim();     // cc number
 
-            // Verifica se ambas as TextBoxes estão preenchidas
+            // verify if the txt are empties
             if (string.IsNullOrWhiteSpace(usernameToRemove) || string.IsNullOrWhiteSpace(ccToRemove))
             {
                 MessageBox.Show("Por favor, preencha ambos os campos: Nome de Utilizador e Número de Cartão de Cidadão.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Lê todas as linhas do ficheiro
+            var confirmResult = MessageBox.Show(
+            $"Está prestes a remover a conta do inquilino \"{usernameToRemove}\" com o número de CC \"{ccToRemove}\". Pretende mesmo continuar?",
+            "Confirmação de Remoção",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+            );
+
+            if (confirmResult != DialogResult.Yes)
+            {
+                return; // if the user press no the operation will be aborted
+            }
+
+            // read all lines of txt
             var lines = File.ReadAllLines(personspath).ToList();
             var updatedLines = new List<string>();
             bool userRemoved = false;
 
             foreach (var line in lines)
             {
+                // separate username, pw & cc
                 var parts = line.Split(',');
-                if (parts.Length > 2) // Garante que existem pelo menos três partes (Username, algo, CC)
+                if (parts.Length == 3)
                 {
-                    string username = parts[0].Replace("Username: ", "").Trim();
-                    string cc = parts[2].Replace("CC: ", "").Trim();
+                    string fileUsername = parts[0].Replace("Username: ", "").Trim();
+                    string fileCC = parts[2].Replace("CC: ", "").Trim();
 
-                    // Adiciona logs de depuração (opcional)
-                    Console.WriteLine($"Lido do ficheiro: Username = {username}, CC = {cc}");
-
-                    // Verifica se a linha deve ser removida
-                    if (username == usernameToRemove && cc == ccToRemove)
+                    // verify if the username and cc already exist
+                    if (fileUsername == usernameToRemove && fileCC == ccToRemove)
                     {
-                        userRemoved = true; // Marca que um utilizador foi removido
+                        userRemoved = true; // match the account and remove it
                     }
                     else
                     {
-                        updatedLines.Add(line); // Mantém a linha na lista atualizada
+                        updatedLines.Add(line);
                     }
                 }
                 else
                 {
-                    // Se a linha não estiver no formato esperado, ignora
                     updatedLines.Add(line);
                 }
             }
 
             if (userRemoved)
             {
-                // Reescreve o ficheiro com as contas restantes
+                // rewrite the file with the remaining accounts
                 File.WriteAllLines(personspath, updatedLines);
                 MessageBox.Show("Conta removida com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpa os campos
+                // cleat txt
                 txt_removeuser.Clear();
                 txt_ccremoveuser.Clear();
             }
             else
             {
-                MessageBox.Show("A conta especificada não foi encontrada. Certifique-se de que o Nome de Utilizador e o Número de Cartão de Cidadão estão corretos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("A conta especificada não foi encontrada. Verifique os dados inseridos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-
         }
-
-
 
         private void btn_backaccountuser_Click(object sender, EventArgs e)
         {
             ManagePersonsForm formManagePersons = new ManagePersonsForm();
             formManagePersons.Show();
             this.Hide(); //hide log in
-        }
-
-        private void LoadAutoCompleteData()
-        {
-            string personspath = @"C:\TP_POO_A25447\createpersons.txt";
-
-            if (File.Exists(personspath))
-            {
-                var lines = File.ReadAllLines(personspath);
-                var usernames = new AutoCompleteStringCollection();
-                var ccNumbers = new AutoCompleteStringCollection();
-
-                foreach (var line in lines)
-                {
-                    var parts = line.Split(',');
-                    if (parts.Length > 0)
-                    {
-                       
-                        var username = parts[0].Replace("Username: ", "").Trim();
-                        var cc = parts.Length > 1 ? parts[1].Replace("CC: ", "").Trim() : "";
-
-                        if (!string.IsNullOrWhiteSpace(username))
-                            usernames.Add(username);
-
-                        if (!string.IsNullOrWhiteSpace(cc))
-                            ccNumbers.Add(cc);
-                    }
-                }
-
-                // Configura o AutoComplete para os TextBoxes
-                txt_removeuser.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                txt_removeuser.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                txt_removeuser.AutoCompleteCustomSource = usernames;
-
-                txt_ccremoveuser.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                txt_ccremoveuser.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                txt_ccremoveuser.AutoCompleteCustomSource = ccNumbers;
-            }
-            else
-            {
-                MessageBox.Show("O ficheiro de contas não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
     }
