@@ -11,11 +11,13 @@ namespace TP_POO_A25447
         //atributes
         public string User_Login { get; set; }
         public string Password_Login { get; set; }
+        public string User_CC { get; set; }
 
-        public Login(string user_Login, string password_Login)
+        public Login(string user_Login, string password_Login, string user_cc)
         {
             User_Login = user_Login;
             Password_Login = password_Login;
+            User_CC = user_cc;
         }
 
         //authentication
@@ -25,19 +27,20 @@ namespace TP_POO_A25447
 
             if (File.Exists(landlordPath))
             {
-                var Line = File.ReadAllLines(landlordPath); // Lê todas as linhas do ficheiro
+                var Line = File.ReadAllLines(landlordPath); // read all lines in the txt
 
                 foreach (var line in Line)
                 {
-                    // separate user and pw with ","
+                    // separate user, pw & cc with ","
                     var separate = line.Split(',');
-                    if (separate.Length == 2) // line in the correct format
+                    if (separate.Length == 3) // line in the correct format
                     {
                         var fileUsername = separate[0].Replace("Username: ", "").Trim();
                         var filePassword = separate[1].Replace("Password: ", "").Trim();
+                        var fileCC = separate[2].Replace("CC: ", "").Trim();
 
-                        // match username & password
-                        if (fileUsername == User_Login && filePassword == Password_Login)
+                        // match username, password & cc
+                        if (fileUsername == User_Login && filePassword == Password_Login && fileCC == User_CC)
                         {
                             return true; // auth successfully
                         }
@@ -62,16 +65,17 @@ namespace TP_POO_A25447
 
                 foreach (var line in Line)
                 {
-                    // separate user and pw with ","
+                    // separate user, pw & cc with ","
                     var separate = line.Split(',');
-                    if (separate.Length == 2) // line in the correct format
+                    if (separate.Length == 3) // line in the correct format
                     {
 
                         var fileUsername = separate[0].Replace("Username: ", "").Trim();
                         var filePassword = separate[1].Replace("Password: ", "").Trim();
+                        var fileCC = separate[2].Replace("CC: ", "").Trim();
 
-                        // match username & password
-                        if (fileUsername == User_Login && filePassword == Password_Login)
+                        // match username, password & cc
+                        if (fileUsername == User_Login && filePassword == Password_Login && fileCC == User_CC)
                         {
                             return true; // auth successfully
                         }

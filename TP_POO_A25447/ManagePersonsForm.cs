@@ -28,7 +28,9 @@ namespace TP_POO_A25447
 
         private void btn_removeaccount_Click(object sender, EventArgs e)
         {
-
+            RemoveAccountUser formRemoveAccount = new RemoveAccountUser();
+            formRemoveAccount.Show();
+            this.Hide(); //hide log in
         }
 
         private void btn_listaccount_Click(object sender, EventArgs e)

@@ -35,6 +35,8 @@
             btn_login = new Button();
             btn_exit = new Button();
             btn_info = new Button();
+            label1 = new Label();
+            cc_txt = new TextBox();
             SuspendLayout();
             // 
             // lbl_user
@@ -61,7 +63,7 @@
             txt_user.Location = new Point(75, 6);
             txt_user.Name = "txt_user";
             txt_user.Size = new Size(130, 23);
-            txt_user.TabIndex = 2;
+            txt_user.TabIndex = 1;
             txt_user.TextChanged += txt_user_TextChanged;
             // 
             // txt_password
@@ -70,13 +72,13 @@
             txt_password.Location = new Point(75, 35);
             txt_password.Name = "txt_password";
             txt_password.Size = new Size(130, 23);
-            txt_password.TabIndex = 3;
+            txt_password.TabIndex = 2;
             txt_password.TextChanged += txt_password_TextChanged;
             // 
             // btn_login
             // 
             btn_login.BackColor = SystemColors.Window;
-            btn_login.Location = new Point(12, 104);
+            btn_login.Location = new Point(12, 134);
             btn_login.Name = "btn_login";
             btn_login.Size = new Size(75, 23);
             btn_login.TabIndex = 4;
@@ -88,7 +90,7 @@
             // btn_exit
             // 
             btn_exit.BackColor = SystemColors.Window;
-            btn_exit.Location = new Point(93, 104);
+            btn_exit.Location = new Point(93, 134);
             btn_exit.Name = "btn_exit";
             btn_exit.Size = new Size(75, 23);
             btn_exit.TabIndex = 5;
@@ -98,14 +100,31 @@
             // 
             // btn_info
             // 
-            btn_info.Location = new Point(268, 104);
+            btn_info.Location = new Point(266, 135);
             btn_info.Margin = new Padding(2);
             btn_info.Name = "btn_info";
             btn_info.Size = new Size(102, 23);
-            btn_info.TabIndex = 7;
+            btn_info.TabIndex = 6;
             btn_info.Text = "INFORMAÇÃO";
             btn_info.UseVisualStyleBackColor = true;
             btn_info.Click += btn_info_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 67);
+            label1.Name = "label1";
+            label1.Size = new Size(45, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Nº CC*";
+            // 
+            // cc_txt
+            // 
+            cc_txt.Location = new Point(75, 64);
+            cc_txt.Name = "cc_txt";
+            cc_txt.Size = new Size(130, 23);
+            cc_txt.TabIndex = 3;
+            cc_txt.TextChanged += cc_txt_TextChanged;
             // 
             // Form1
             // 
@@ -113,7 +132,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(379, 141);
+            ClientSize = new Size(379, 169);
+            Controls.Add(cc_txt);
+            Controls.Add(label1);
             Controls.Add(btn_info);
             Controls.Add(btn_exit);
             Controls.Add(btn_login);
@@ -136,5 +157,7 @@
         private Button btn_login;
         private Button btn_exit;
         private Button btn_info;
+        private Label label1;
+        private TextBox cc_txt;
     }
 }
