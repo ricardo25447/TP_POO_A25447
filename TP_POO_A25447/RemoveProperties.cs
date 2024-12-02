@@ -40,19 +40,19 @@ namespace TP_POO_A25447
                 return;
             }
 
-            // Lê todas as linhas do ficheiro
+            // read all lines 
             var lines = File.ReadAllLines(propertiesPath);
-            listView1.Items.Clear(); // Limpa os itens existentes no ListView
+            listView1.Items.Clear(); // clear objects in list view
 
             foreach (var line in lines)
             {
-                // Adiciona cada linha como um item no ListView
+                // add a object to the list view
                 listView1.Items.Add(new ListViewItem(line.Trim()));
             }
 
             if (listView1.Items.Count == 0)
             {
-                MessageBox.Show("Não existem propriedades registadas.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Não existem imóveis registados.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -60,37 +60,37 @@ namespace TP_POO_A25447
         {
             if (!File.Exists(propertiesPath))
             {
-                MessageBox.Show("O ficheiro de propriedades não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("O ficheiro de imóveis não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Verifica se algum item foi selecionado
+            // verify if have a sellected object
             if (listView1.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Por favor, selecione uma propriedade para remover.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um imóvel para remover.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Obtém o item selecionado
+            // get the sellected object
             string selectedLine = listView1.SelectedItems[0].Text;
 
-            // Lê todas as linhas do ficheiro
+            // read all lines in txt
             var lines = File.ReadAllLines(propertiesPath).ToList();
 
-            // Remove a linha correspondente
+            // remove lines in txt
             if (lines.Remove(selectedLine))
             {
-                // Atualiza o ficheiro
+                // update txt
                 File.WriteAllLines(propertiesPath, lines);
 
-                MessageBox.Show("Propriedade removida com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Imóvel removido!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Recarrega a lista no ListView
+                // refresh list view
                 LoadProperties();
             }
             else
             {
-                MessageBox.Show("Erro ao remover a propriedade. Por favor, tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao remover o imóvel. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -99,7 +99,7 @@ namespace TP_POO_A25447
             ManagementProperties formManagementProperties = new ManagementProperties();
             formManagementProperties.Show();
 
-            // Fecha o formulário atual
+            // close forms
             this.Close();
         }
 
