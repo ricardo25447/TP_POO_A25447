@@ -83,17 +83,17 @@ namespace TP_POO_A25447
                 return;
             }
 
-            // Verificar se um imóvel foi selecionado
+            // verify if some property was sellected
             if (listview_properties.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selecione um imóvel para visualizar os contratos ativos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Obter o imóvel selecionado
+            // obtain the sellected property
             string selectedProperty = listview_properties.SelectedItems[0].Text;
 
-            // Lê todas as linhas do ficheiro de contratos
+            // read all line of txt
             var lines = File.ReadAllLines(contractsPath);
             var associatedContracts = new List<string>();
 
@@ -101,7 +101,7 @@ namespace TP_POO_A25447
             {
                 if (line.Contains($"Imóvel: {selectedProperty}"))
                 {
-                    // Extrair somente os dados relevantes: Inquilino, CC e datas
+                    // only username, cc and dates to show
                     var parts = line.Split(',');
 
                     // Atribuir partes esperadas
@@ -110,12 +110,11 @@ namespace TP_POO_A25447
                     string startDate = parts.FirstOrDefault(p => p.Contains("Início:"))?.Replace("Início:", "").Trim();
                     string endDate = parts.FirstOrDefault(p => p.Contains("Fim:"))?.Replace("Fim:", "").Trim();
 
-                    // Formatar o resultado
                     associatedContracts.Add($"Inquilino: {tenant}, CC: {cc}, Início: {startDate}, Fim: {endDate}");
                 }
             }
 
-            // Exibir os contratos associados
+            // show contracts associated to tenant
             if (associatedContracts.Count > 0)
             {
                 MessageBox.Show($"Contratos associados ao imóvel '{selectedProperty}':\n\n{string.Join("\n", associatedContracts)}",
