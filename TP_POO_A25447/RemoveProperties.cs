@@ -56,52 +56,58 @@ namespace TP_POO_A25447
 
         private void btn_removeproperty_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(propertiesPath))
             {
-                MessageBox.Show("O ficheiro de imóveis não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // verify if have a sellected object
-            if (listView1.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Selecione um imóvel para remover.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // get the sellected object
-            string selectedLine = listView1.SelectedItems[0].Text;
-
-            if (PropertyContract(selectedLine))
-            {
-                var result = MessageBox.Show($"O imóvel '{selectedLine}' está associado a um contrato ativo. Deseja mesmo removê-lo?",
-                                             "Aviso",
-                                             MessageBoxButtons.YesNo,
-                                             MessageBoxIcon.Warning);
-
-                if (result == DialogResult.No)
+                if (!File.Exists(propertiesPath))
                 {
-                    return; // do not remove if press no
+                    MessageBox.Show("O ficheiro de imóveis não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-            }
 
-            // read all lines in txt
-            var lines = File.ReadAllLines(propertiesPath).ToList();
+                // Verify if a property is selected
+                if (listView1.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Selecione um imóvel para remover.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            // remove lines in txt
-            if (lines.Remove(selectedLine))
-            {
-                // update txt
-                File.WriteAllLines(propertiesPath, lines);
+                // Get the selected property
+                string selectedLine = listView1.SelectedItems[0].Text;
 
-                MessageBox.Show("Imóvel removido!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Check if the property has active contracts
+                if (PropertyContract(selectedLine))
+                {
+                    var result = MessageBox.Show($"O imóvel '{selectedLine}' está associado a um contrato ativo. Deseja mesmo removê-lo? Todas as associações ao contrato serão removidas.",
+                                                 "Aviso",
+                                                 MessageBoxButtons.YesNo,
+                                                 MessageBoxIcon.Warning);
 
-                // refresh list view
-                LoadProperties();
-            }
-            else
-            {
-                MessageBox.Show("Erro ao remover o imóvel. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (result == DialogResult.No)
+                    {
+                        return; // Do not remove if the user selects "No"
+                    }
+
+                    // Remove associated contracts
+                    RemovePropertyContracts(selectedLine);
+                }
+
+                // Read all lines from the properties file
+                var lines = File.ReadAllLines(propertiesPath).ToList();
+
+                // Remove the selected property
+                if (lines.Remove(selectedLine))
+                {
+                    // Update the properties file
+                    File.WriteAllLines(propertiesPath, lines);
+
+                    MessageBox.Show("Imóvel e contratos associados foram removidos!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Refresh the properties list
+                    LoadProperties();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao remover o imóvel. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -139,6 +145,28 @@ namespace TP_POO_A25447
             }
 
             return false; // property is not associate to any contract
+        }
+
+        private void RemovePropertyContracts(string property)
+        {
+            string contractsPath = @"C:\TP_POO_A25447\contracts.txt";
+
+            if (!File.Exists(contractsPath))
+                return;
+
+            // Read all lines from the contracts file
+            var lines = File.ReadAllLines(contractsPath).ToList();
+
+            // Filter out contracts associated with the selected property
+            var updatedLines = lines.Where(line => !line.Contains($"Imóvel: {property}")).ToList();
+
+            // Update the contracts file
+            File.WriteAllLines(contractsPath, updatedLines);
+
+            MessageBox.Show($"Todos os contratos associados ao imóvel '{property}' foram removidos.",
+                            "Informação",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
         }
     }
 

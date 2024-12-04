@@ -15,6 +15,8 @@ namespace TP_POO_A25447
         public RemoveAccountUser()
         {
             InitializeComponent();
+
+            ConfigureAutoCompleteUsername();
         }
 
         private void RemoveAccountUser_Load(object sender, EventArgs e)
@@ -109,5 +111,78 @@ namespace TP_POO_A25447
             this.Hide(); //hide log in
         }
 
+        private void ConfigureAutoCompleteUsername()
+        {
+            string personspath = @"C:\TP_POO_A25447\createpersons.txt";
+
+            // verify if file exist
+            if (File.Exists(personspath))
+            {
+                // read all lines of txt
+                var lines = File.ReadAllLines(personspath);
+                var usernames = new AutoCompleteStringCollection();
+
+                foreach (var line in lines)
+                {
+                    // obtain the user
+                    var parts = line.Split(',');
+                    if (parts.Length > 0)
+                    {
+                        string username = parts[0].Replace("Username: ", "").Trim();
+                        if (!string.IsNullOrWhiteSpace(username))
+                        {
+                            usernames.Add(username); // add name to autocomplete
+                        }
+                    }
+                }
+
+                // configure autocomplete to the textbox
+                txt_removeuser.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                txt_removeuser.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                txt_removeuser.AutoCompleteCustomSource = usernames;
+            }
+            else
+            {
+                MessageBox.Show("O ficheiro de contas não foi encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txt_removeuser_TextChanged(object sender, EventArgs e)
+        {
+
+            string personsPath = @"C:\TP_POO_A25447\createpersons.txt";
+
+            if (!File.Exists(personsPath))
+            {
+                MessageBox.Show("O ficheiro de inquilinos não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string tenantName = txt_removeuser.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(tenantName))
+            {
+                txt_ccremoveuser.Clear();
+                return;
+            }
+
+            var lines = File.ReadAllLines(personsPath);
+
+            foreach (var line in lines)
+            {
+                var parts = line.Split(',');
+                if (parts.Length >= 3) // check if username and cc are not empties
+                {
+                    string fileTenantName = parts[0].Replace("Username: ", "").Trim();
+                    string fileTenantCC = parts[2].Replace("CC: ", "").Trim();
+
+                    if (fileTenantName.Equals(tenantName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        txt_ccremoveuser.Text = fileTenantCC; // autocomplete cc
+                        return;
+                    }
+                }
+            }
+        }
     }
 }

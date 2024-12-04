@@ -52,6 +52,7 @@
             txt_removeuser.Name = "txt_removeuser";
             txt_removeuser.Size = new Size(100, 23);
             txt_removeuser.TabIndex = 1;
+            txt_removeuser.TextChanged += txt_removeuser_TextChanged;
             // 
             // label1
             // 
