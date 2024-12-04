@@ -46,7 +46,7 @@
             // 
             // btn_savenewdata
             // 
-            btn_savenewdata.Location = new Point(9, 231);
+            btn_savenewdata.Location = new Point(12, 230);
             btn_savenewdata.Name = "btn_savenewdata";
             btn_savenewdata.Size = new Size(157, 23);
             btn_savenewdata.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             // btn_back
             // 
-            btn_back.Location = new Point(172, 231);
+            btn_back.Location = new Point(175, 230);
             btn_back.Name = "btn_back";
             btn_back.Size = new Size(75, 23);
             btn_back.TabIndex = 1;

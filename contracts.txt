@@ -1,1 +1,2 @@
 
+Imóvel: Tipo de imóvel: Apartamento T3, Preço do imóvel: 150000, Renda Mensal do Imóvel: 2000, Distrito: Braga, Concelho: Famalicão, Freguesia: Delães, Inquilino: Ricardo, CC: 123456789c, Data Início: 04/12/2024, Data Fim: 04/12/2025
