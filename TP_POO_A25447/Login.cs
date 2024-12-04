@@ -13,6 +13,9 @@ namespace TP_POO_A25447
         public string Password_Login { get; set; }
         public string User_CC { get; set; }
 
+        public static string LoggedInUsername { get; private set; }
+        public static string LoggedInCC { get; private set; }
+
         public Login(string user_Login, string password_Login, string user_cc)
         {
             User_Login = user_Login;
@@ -77,6 +80,8 @@ namespace TP_POO_A25447
                         // match username, password & cc
                         if (fileUsername == User_Login && filePassword == Password_Login && fileCC == User_CC)
                         {
+                            LoggedInUsername = fileUsername;
+                            LoggedInCC = fileCC;
                             return true; // auth successfully
                         }
                     }
@@ -85,7 +90,18 @@ namespace TP_POO_A25447
 
             return false; // auth fail
         }
+        public static bool IsLoggedIn()
+        {
+            return !string.IsNullOrEmpty(LoggedInUsername);
+            return !string.IsNullOrEmpty(LoggedInCC);
+        }
 
+        // clear data of login
+        public static void Logout()
+        {
+            LoggedInUsername = null;
+            LoggedInCC = null;
+        }
     }
 }
 

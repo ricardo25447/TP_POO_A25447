@@ -43,6 +43,7 @@
             btn_showcontracts_T.TabIndex = 0;
             btn_showcontracts_T.Text = "Consultar Contratos";
             btn_showcontracts_T.UseVisualStyleBackColor = true;
+            btn_showcontracts_T.Click += btn_showcontracts_T_Click;
             // 
             // btn_showincomes_T
             // 
@@ -53,6 +54,7 @@
             btn_showincomes_T.TabIndex = 1;
             btn_showincomes_T.Text = "Consultar Rendas";
             btn_showincomes_T.UseVisualStyleBackColor = true;
+            btn_showincomes_T.Click += btn_showincomes_T_Click;
             // 
             // btn_showdocuments_T
             // 

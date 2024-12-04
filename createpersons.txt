@@ -1,1 +1,2 @@
-Username: abc, Password: 1234, CC: 123456789
+Username: Ricardo, Password: 1234, CC: 123456789c
+Username: Rui, Password: 1234, CC: 123456789b

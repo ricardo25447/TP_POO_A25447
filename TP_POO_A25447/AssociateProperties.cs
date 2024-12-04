@@ -1,0 +1,76 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+namespace TP_POO_A25447
+{
+    public partial class AssociateProperties : Form
+    {
+        private string propertiesPath = @"C:\TP_POO_A25447\properties.txt";
+        public AssociateProperties()
+        {
+            InitializeComponent();
+
+            this.Load += FormManageContracts_Load;
+            listview_properties.View = View.Details; // show details
+            listview_properties.Scrollable = true; // able scroll
+            listview_properties.FullRowSelect = true; // select all line
+            listview_properties.Columns.Add("Imóveis:", 865, HorizontalAlignment.Left); // fix scroll
+        }
+
+
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            FormAdmin formFormAdmin = new FormAdmin();
+            formFormAdmin.Show();
+            this.Hide(); //hide log in
+        }
+
+        private void btn_addcontract_Click(object sender, EventArgs e)
+        {
+            if (listview_properties.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Por favor, selecione um imóvel.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // obtain the property
+            string selectedProperty = listview_properties.SelectedItems[0].Text;
+
+            // open TenantContract
+            TenantContract formAddContract = new TenantContract(selectedProperty);
+            formAddContract.ShowDialog();
+        }
+
+        private void FormManageContracts_Load(object sender, EventArgs e)
+        {
+            if (!File.Exists(propertiesPath))
+            {
+                MessageBox.Show("O ficheiro de imóveis não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // load properties
+            var lines = File.ReadAllLines(propertiesPath);
+            listview_properties.Items.Clear();
+
+            foreach (var line in lines)
+            {
+                listview_properties.Items.Add(line.Trim());
+            }
+
+            if (listview_properties.Items.Count == 0)
+            {
+                MessageBox.Show("Não existem imóveis disponíveis para contratos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+    }
+}

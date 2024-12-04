@@ -19,7 +19,9 @@ namespace TP_POO_A25447
 
         private void btn_showcontracts_Click(object sender, EventArgs e)
         {
-
+            AssociateProperties formAssociateProperties = new AssociateProperties();
+            formAssociateProperties.Show();
+            this.Hide(); //hide log in
         }
 
         private void btn_back_Click(object sender, EventArgs e)
@@ -40,9 +42,14 @@ namespace TP_POO_A25447
 
         private void managepersons_Click(object sender, EventArgs e)
         {
-            ManagePersonsForm ManagementPersons= new ManagePersonsForm();
+            ManagePersonsForm ManagementPersons = new ManagePersonsForm();
             ManagementPersons.Show();
             this.Hide(); //hide log in
+        }
+
+        private void btn_showincomes_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

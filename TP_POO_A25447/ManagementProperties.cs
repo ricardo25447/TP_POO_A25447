@@ -28,7 +28,11 @@ namespace TP_POO_A25447
 
         private void btn_editproperty_Click(object sender, EventArgs e)
         {
+            EditProperty formEditProperty = new EditProperty();
+            formEditProperty.Show();
 
+            // close form
+            this.Close();
         }
 
         private void btn_addproperty_Click(object sender, EventArgs e)

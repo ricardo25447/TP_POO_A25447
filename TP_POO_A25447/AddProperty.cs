@@ -12,12 +12,9 @@ namespace TP_POO_A25447
 {
     public partial class AddProperty : Form
     {
-        public AddProperty()
+        public AddProperty(string property = null)
         {
             InitializeComponent();
-
-            ConfigureAutoCompleteUsername();
-            ConfigureAutoCompleteCC();
 
             dropdown_typeproperty.Items.Clear();
             dropdown_typeproperty.Items.Add("Selecione uma opção");
@@ -35,12 +32,6 @@ namespace TP_POO_A25447
         {
 
         }
-
-        private void txt_incomeproperty_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_addproperty_Click(object sender, EventArgs e)
         {
             // path file
@@ -49,29 +40,29 @@ namespace TP_POO_A25447
             // txt values
             string propertyType = dropdown_typeproperty.Text.Trim();
             string propertyPrice = txt_priceproperty.Text.Trim();
-            string propertyincome = txt_incomeproperty.Text.Trim();
+            string propertyIncome = txt_incomeproperty.Text.Trim();
             string propertyDistrict = txt_districtproperty.Text.Trim();
             string propertyMunicipality = txt_municipalityproperty.Text.Trim();
             string propertyParish = txt_parishproperty.Text.Trim();
-            string propertyTenant = txt_inquilinoproperty.Text.Trim();
-            string propertyTenantCC = txt_propertyusercc.Text.Trim();
+          
+
 
             // verify if textbox's are empties
-            if (string.IsNullOrWhiteSpace(propertyType) || string.IsNullOrWhiteSpace(propertyPrice) || string.IsNullOrWhiteSpace(propertyincome) || string.IsNullOrWhiteSpace(propertyDistrict) || string.IsNullOrWhiteSpace(propertyMunicipality) || string.IsNullOrWhiteSpace(propertyParish) || string.IsNullOrWhiteSpace(propertyTenant))
+            if (string.IsNullOrWhiteSpace(propertyType) || string.IsNullOrWhiteSpace(propertyPrice) || string.IsNullOrWhiteSpace(propertyIncome) || string.IsNullOrWhiteSpace(propertyDistrict) || string.IsNullOrWhiteSpace(propertyMunicipality) || string.IsNullOrWhiteSpace(propertyParish))
             {
-                MessageBox.Show("Todos os campossão de preenchimento obrigatório para fazer o registo de uma propriedade.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Todos os campos são de preenchimento obrigatório para fazer o registo de um imóvel.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // file formart to save in txt
-            string propertyInfo = $"Tipo de imóvel: {propertyType}, Preço do imóvel: {propertyPrice}, Renda Mensal da propriedade: {propertyincome}, Distrito: {propertyDistrict}, Concelho: {propertyMunicipality}, Freguesia: {propertyParish}, Inquilino: {propertyTenant}";
+            string propertyInfo = $"Tipo de imóvel: {propertyType}, Preço do imóvel: {propertyPrice}, Renda Mensal do Imóvel: {propertyIncome}, Distrito: {propertyDistrict}, Concelho: {propertyMunicipality}, Freguesia: {propertyParish}";
 
             try
             {
                 // save in file txt
                 File.AppendAllText(propertiesPath, propertyInfo + Environment.NewLine);
 
-                MessageBox.Show("Foi adiciono/a um/a " + propertyType + ", localizado em " + propertyParish + ", " + propertyMunicipality + ", " + propertyDistrict + ", associada ao inquilino " + propertyTenant + "!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Foi adiciono/a um/a " + propertyType + ", localizado em " + propertyParish + ", " + propertyMunicipality + ", " + propertyDistrict +"!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // clear textboxs
                 dropdown_typeproperty.SelectedIndex = 0;
@@ -80,12 +71,10 @@ namespace TP_POO_A25447
                 txt_districtproperty.Clear();
                 txt_municipalityproperty.Clear();
                 txt_parishproperty.Clear();
-                txt_inquilinoproperty.Clear();
-                txt_propertyusercc.Clear();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao guardar as informações da propriedade: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ocorreu um erro ao guardar as informações do imóvel: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -100,75 +89,22 @@ namespace TP_POO_A25447
         {
 
         }
-        private void ConfigureAutoCompleteUsername()
+       
+        private void txt_priceproperty_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string personspath = @"C:\TP_POO_A25447\createpersons.txt";
-
-            // verify if file exist
-            if (File.Exists(personspath))
+            // only numbers, backspace and decimal dot
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
             {
-                // read all lines of txt
-                var lines = File.ReadAllLines(personspath);
-                var usernames = new AutoCompleteStringCollection();
-
-                foreach (var line in lines)
-                {
-                    // obtain the user
-                    var parts = line.Split(',');
-                    if (parts.Length > 0)
-                    {
-                        string username = parts[0].Replace("Username: ", "").Trim();
-                        if (!string.IsNullOrWhiteSpace(username))
-                        {
-                            usernames.Add(username); // add name to autocomplete
-                        }
-                    }
-                }
-
-                // configure autocomplete to the textbox
-                txt_inquilinoproperty.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                txt_inquilinoproperty.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                txt_inquilinoproperty.AutoCompleteCustomSource = usernames;
-            }
-            else
-            {
-                MessageBox.Show("O ficheiro de contas não foi encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Handled = true; // only numbers
             }
         }
 
-        private void ConfigureAutoCompleteCC()
+        private void txt_incomeproperty_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string personspath = @"C:\TP_POO_A25447\createpersons.txt";
-
-            // verify if file exist
-            if (File.Exists(personspath))
+            // only numbers, backspace and decimal dot
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
             {
-                // read all lines of txt
-                var lines = File.ReadAllLines(personspath);
-                var ncc = new AutoCompleteStringCollection();
-
-                foreach (var line in lines)
-                {
-                    // obtain the user
-                    var parts = line.Split(',');
-                    if (parts.Length > 0)
-                    {
-                        string CC = parts[2].Replace("CC: ", "").Trim();
-                        if (!string.IsNullOrWhiteSpace(CC))
-                        {
-                            ncc.Add(CC); // add name to autocomplete
-                        }
-                    }
-                }
-
-                // configure autocomplete to the textbox
-                txt_propertyusercc.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                txt_propertyusercc.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                txt_propertyusercc.AutoCompleteCustomSource = ncc;
-            }
-            else
-            {
-                MessageBox.Show("O ficheiro de contas não foi encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Handled = true; // only numbers
             }
         }
 

@@ -40,7 +40,7 @@
             // 
             btn_addproperty.Location = new Point(12, 15);
             btn_addproperty.Name = "btn_addproperty";
-            btn_addproperty.Size = new Size(119, 29);
+            btn_addproperty.Size = new Size(119, 20);
             btn_addproperty.TabIndex = 0;
             btn_addproperty.Text = "Adicionar Imóvel";
             btn_addproperty.UseVisualStyleBackColor = true;
@@ -48,9 +48,9 @@
             // 
             // btn_deleteproperty
             // 
-            btn_deleteproperty.Location = new Point(12, 50);
+            btn_deleteproperty.Location = new Point(12, 41);
             btn_deleteproperty.Name = "btn_deleteproperty";
-            btn_deleteproperty.Size = new Size(119, 29);
+            btn_deleteproperty.Size = new Size(119, 20);
             btn_deleteproperty.TabIndex = 1;
             btn_deleteproperty.Text = "Eliminar Imóvel";
             btn_deleteproperty.UseVisualStyleBackColor = true;
@@ -58,9 +58,9 @@
             // 
             // btn_editproperty
             // 
-            btn_editproperty.Location = new Point(12, 85);
+            btn_editproperty.Location = new Point(12, 68);
             btn_editproperty.Name = "btn_editproperty";
-            btn_editproperty.Size = new Size(119, 29);
+            btn_editproperty.Size = new Size(119, 20);
             btn_editproperty.TabIndex = 2;
             btn_editproperty.Text = "Editar Imóvel";
             btn_editproperty.UseVisualStyleBackColor = true;
@@ -68,9 +68,9 @@
             // 
             // btn_back
             // 
-            btn_back.Location = new Point(12, 181);
+            btn_back.Location = new Point(12, 134);
             btn_back.Name = "btn_back";
-            btn_back.Size = new Size(71, 29);
+            btn_back.Size = new Size(71, 20);
             btn_back.TabIndex = 3;
             btn_back.Text = "VOLTAR";
             btn_back.UseVisualStyleBackColor = true;
@@ -79,9 +79,9 @@
             // btn_listproperties
             // 
             btn_listproperties.BackColor = SystemColors.ButtonHighlight;
-            btn_listproperties.Location = new Point(12, 120);
+            btn_listproperties.Location = new Point(12, 94);
             btn_listproperties.Name = "btn_listproperties";
-            btn_listproperties.Size = new Size(119, 29);
+            btn_listproperties.Size = new Size(119, 21);
             btn_listproperties.TabIndex = 0;
             btn_listproperties.Text = "Consultar Imóveis";
             btn_listproperties.UseVisualStyleBackColor = false;
@@ -92,7 +92,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(497, 229);
+            ClientSize = new Size(273, 164);
             Controls.Add(btn_listproperties);
             Controls.Add(btn_back);
             Controls.Add(btn_editproperty);
