@@ -33,8 +33,8 @@ namespace TP_POO_A25447
             if (parts.Length >= 6)
             {
                 combobox_typeproperty.Text = parts[0].Replace("Tipo de imóvel: ", "").Trim();
-                txt_priceproperty.Text = parts[1].Replace("Preço: ", "").Trim();
-                txt_incomeproperty.Text = parts[2].Replace("Renda Mensal: ", "").Trim();
+                txt_priceproperty.Text = parts[1].Replace("Preço do imóvel: ", "").Trim();
+                txt_incomeproperty.Text = parts[2].Replace("Renda Mensal do Imóvel: ", "").Trim();
                 txt_districtproperty.Text = parts[3].Replace("Distrito: ", "").Trim();
                 txt_municipalityproperty.Text = parts[4].Replace("Concelho: ", "").Trim();
                 txt_parishproperty.Text = parts[5].Replace("Freguesia: ", "").Trim();
@@ -43,8 +43,6 @@ namespace TP_POO_A25447
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            EditProperty formEditProperty = new EditProperty();
-            formEditProperty.Show();
             // close form
             this.Close();
         }
@@ -53,7 +51,7 @@ namespace TP_POO_A25447
         {
             // obtain a updated data
             string updatedProperty = $"Tipo de imóvel: {combobox_typeproperty.Text.Trim()}, Preço do imóvel: {txt_priceproperty.Text.Trim()}, Renda Mensal do Imóvel: {txt_incomeproperty.Text.Trim()}, Distrito: {txt_districtproperty.Text.Trim()}, Concelho: {txt_municipalityproperty.Text.Trim()}, Freguesia: {txt_parishproperty.Text.Trim()}";
-            
+
             try
             {
                 // read all lines of txt
@@ -72,12 +70,29 @@ namespace TP_POO_A25447
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao encontrar o imóvel original. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao encontrar o imóvel criado. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao salvar o imóvel: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao guardar o imóvel: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void txt_priceproperty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // only numbers, backspace and decimal dot
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
+            {
+                e.Handled = true; // only numbers
+            }
+        }
+
+        private void txt_incomeproperty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // only numbers, backspace and decimal dot
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
+            {
+                e.Handled = true; // only numbers
             }
         }
     }

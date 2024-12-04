@@ -80,7 +80,7 @@ namespace TP_POO_A25447
         }
         private void SaveContract(string property, string tenantName, string tenantCC, DateTime startDate, DateTime endDate)
         {
-            string contractInfo = $"Imóvel: {property}, Inquilino: {tenantName}, CC: {tenantCC}, Data Inicío: {startDate.ToShortDateString()}, Data Fim: {endDate.ToShortDateString()}";
+            string contractInfo = $"Imóvel: {property}, Inquilino: {tenantName}, CC: {tenantCC}, Data Início: {startDate.ToShortDateString()}, Data Fim: {endDate.ToShortDateString()}";
 
             File.AppendAllText(contractsPath, contractInfo + Environment.NewLine);
         }

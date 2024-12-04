@@ -44,7 +44,7 @@ namespace TP_POO_A25447
             string propertyDistrict = txt_districtproperty.Text.Trim();
             string propertyMunicipality = txt_municipalityproperty.Text.Trim();
             string propertyParish = txt_parishproperty.Text.Trim();
-          
+
 
 
             // verify if textbox's are empties
@@ -62,7 +62,7 @@ namespace TP_POO_A25447
                 // save in file txt
                 File.AppendAllText(propertiesPath, propertyInfo + Environment.NewLine);
 
-                MessageBox.Show("Foi adiciono/a um/a " + propertyType + ", localizado em " + propertyParish + ", " + propertyMunicipality + ", " + propertyDistrict +"!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Foi adiciono/a um/a " + propertyType + ", localizado em " + propertyParish + ", " + propertyMunicipality + ", " + propertyDistrict + "!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // clear textboxs
                 dropdown_typeproperty.SelectedIndex = 0;
@@ -89,7 +89,7 @@ namespace TP_POO_A25447
         {
 
         }
-       
+
         private void txt_priceproperty_KeyPress(object sender, KeyPressEventArgs e)
         {
             // only numbers, backspace and decimal dot
@@ -107,6 +107,5 @@ namespace TP_POO_A25447
                 e.Handled = true; // only numbers
             }
         }
-
     }
 }

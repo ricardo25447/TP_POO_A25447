@@ -72,5 +72,64 @@ namespace TP_POO_A25447
                 MessageBox.Show("Não existem imóveis disponíveis para contratos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void btn_activecontracts_Click(object sender, EventArgs e)
+        {
+            string contractsPath = @"C:\TP_POO_A25447\contracts.txt";
+
+            if (!File.Exists(contractsPath))
+            {
+                MessageBox.Show("O ficheiro de contratos não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Verificar se um imóvel foi selecionado
+            if (listview_properties.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um imóvel para visualizar os contratos ativos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obter o imóvel selecionado
+            string selectedProperty = listview_properties.SelectedItems[0].Text;
+
+            // Lê todas as linhas do ficheiro de contratos
+            var lines = File.ReadAllLines(contractsPath);
+            var associatedContracts = new List<string>();
+
+            foreach (var line in lines)
+            {
+                if (line.Contains($"Imóvel: {selectedProperty}"))
+                {
+                    // Extrair somente os dados relevantes: Inquilino, CC e datas
+                    var parts = line.Split(',');
+
+                    // Atribuir partes esperadas
+                    string tenant = parts.FirstOrDefault(p => p.Contains("Inquilino:"))?.Replace("Inquilino:", "").Trim();
+                    string cc = parts.FirstOrDefault(p => p.Contains("CC:"))?.Replace("CC:", "").Trim();
+                    string startDate = parts.FirstOrDefault(p => p.Contains("Início:"))?.Replace("Início:", "").Trim();
+                    string endDate = parts.FirstOrDefault(p => p.Contains("Fim:"))?.Replace("Fim:", "").Trim();
+
+                    // Formatar o resultado
+                    associatedContracts.Add($"Inquilino: {tenant}, CC: {cc}, Início: {startDate}, Fim: {endDate}");
+                }
+            }
+
+            // Exibir os contratos associados
+            if (associatedContracts.Count > 0)
+            {
+                MessageBox.Show($"Contratos associados ao imóvel '{selectedProperty}':\n\n{string.Join("\n", associatedContracts)}",
+                                "Contratos Ativos",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show($"Não existem contratos ativos para o imóvel '{selectedProperty}'.",
+                                "Informação",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+        }
     }
 }

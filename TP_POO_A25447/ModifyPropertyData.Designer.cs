@@ -78,6 +78,7 @@
             txt_priceproperty.Name = "txt_priceproperty";
             txt_priceproperty.Size = new Size(157, 23);
             txt_priceproperty.TabIndex = 3;
+            txt_priceproperty.KeyPress += txt_priceproperty_KeyPress;
             // 
             // txt_incomeproperty
             // 
@@ -85,6 +86,7 @@
             txt_incomeproperty.Name = "txt_incomeproperty";
             txt_incomeproperty.Size = new Size(157, 23);
             txt_incomeproperty.TabIndex = 4;
+            txt_incomeproperty.KeyPress += txt_incomeproperty_KeyPress;
             // 
             // txt_districtproperty
             // 
