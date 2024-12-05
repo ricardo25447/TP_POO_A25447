@@ -1,0 +1,1 @@
+Tipo de imóvel: Apartamento T2, Preço do imóvel: 100000, Renda Mensal do Imóvel: 1000, Distrito: Braga, Concelho: Famalicão, Freguesia: Delães

@@ -1,0 +1,1 @@
+Imóvel: Tipo de imóvel: Apartamento T2, Preço do imóvel: 100000, Renda Mensal do Imóvel: 1000, Distrito: Braga, Concelho: Famalicão, Freguesia: Delães, Inquilino: Ricardo, CC: 123456789c, Data Início: 05/12/2024, Data Fim: 19/12/2024

@@ -69,5 +69,75 @@ namespace TP_POO_A25447
         {
 
         }
+
+        private void btn_showexpenses_Click(object sender, EventArgs e)
+        {
+            string contractsPath = @"C:\TP_POO_A25447\contracts.txt"; // Path to contracts file
+            string expensesPath = @"C:\TP_POO_A25447\expenses.txt";   // Path to expenses file
+
+            if (!File.Exists(contractsPath))
+            {
+                MessageBox.Show("O ficheiro de contratos não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!File.Exists(expensesPath))
+            {
+                MessageBox.Show("O ficheiro de despesas não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Assuming the logged-in user details are available
+            string loggedInTenant = Login.LoggedInUsername; // Replace with actual logged-in username
+            string loggedInCC = Login.LoggedInCC;           // Replace with actual logged-in CC
+
+            // Find the property associated with the logged-in tenant
+            var contractLines = File.ReadAllLines(contractsPath);
+            string associatedProperty = contractLines.FirstOrDefault(line => line.Contains($"Inquilino: {loggedInTenant}") && line.Contains($"CC: {loggedInCC}"));
+
+            if (string.IsNullOrWhiteSpace(associatedProperty))
+            {
+                MessageBox.Show("Nenhum imóvel associado ao inquilino atual.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Extract the property name from the contract line
+            string propertyName = associatedProperty.Split(',')[0].Replace("Imóvel:", "").Trim();
+
+            // Find all expenses associated with the property
+            var expenseLines = File.ReadAllLines(expensesPath);
+            var associatedExpenses = expenseLines
+                .Where(line => line.Contains($"Imóvel: {propertyName}"))
+                .Select(line =>
+                {
+                    // Extract only the relevant fields from the expense line
+                    var parts = line.Split(',');
+                    string type = parts.FirstOrDefault(p => p.Contains("Tipo:"))?.Replace("Tipo:", "").Trim();
+                    string description = parts.FirstOrDefault(p => p.Contains("Descrição:"))?.Replace("Descrição:", "").Trim();
+                    string value = parts.FirstOrDefault(p => p.Contains("Valor:"))?.Replace("Valor:", "").Trim();
+                    string date = parts.FirstOrDefault(p => p.Contains("Data:"))?.Replace("Data:", "").Trim();
+
+                    // Format the output for each expense
+                    return $"Tipo: {type}, Descrição: {description}, Valor: {value}, Data: {date}";
+                })
+                .ToList();
+
+            // Display the expenses
+            if (associatedExpenses.Count > 0)
+            {
+                MessageBox.Show($"Despesas associadas ao imóvel '{propertyName}':\n\n{string.Join("\n", associatedExpenses)}",
+                                "Despesas do Imóvel",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show($"Não existem despesas associadas ao imóvel '{propertyName}'.",
+                                "Informação",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+        }
+
     }
 }

@@ -32,6 +32,7 @@
             btn_showincomes_T = new Button();
             btn_showdocuments_T = new Button();
             btn_logout = new Button();
+            btn_showexpenses = new Button();
             SuspendLayout();
             // 
             // btn_showcontracts_T
@@ -47,7 +48,7 @@
             // 
             // btn_showincomes_T
             // 
-            btn_showincomes_T.Location = new Point(8, 36);
+            btn_showincomes_T.Location = new Point(8, 63);
             btn_showincomes_T.Margin = new Padding(2);
             btn_showincomes_T.Name = "btn_showincomes_T";
             btn_showincomes_T.Size = new Size(143, 25);
@@ -58,7 +59,7 @@
             // 
             // btn_showdocuments_T
             // 
-            btn_showdocuments_T.Location = new Point(8, 65);
+            btn_showdocuments_T.Location = new Point(8, 92);
             btn_showdocuments_T.Margin = new Padding(2);
             btn_showdocuments_T.Name = "btn_showdocuments_T";
             btn_showdocuments_T.Size = new Size(143, 25);
@@ -68,7 +69,7 @@
             // 
             // btn_logout
             // 
-            btn_logout.Location = new Point(11, 107);
+            btn_logout.Location = new Point(8, 151);
             btn_logout.Margin = new Padding(2);
             btn_logout.Name = "btn_logout";
             btn_logout.Size = new Size(63, 25);
@@ -77,12 +78,23 @@
             btn_logout.UseVisualStyleBackColor = true;
             btn_logout.Click += btn_logout_Click;
             // 
+            // btn_showexpenses
+            // 
+            btn_showexpenses.Location = new Point(12, 35);
+            btn_showexpenses.Name = "btn_showexpenses";
+            btn_showexpenses.Size = new Size(139, 23);
+            btn_showexpenses.TabIndex = 4;
+            btn_showexpenses.Text = "Consultar Despesas";
+            btn_showexpenses.UseVisualStyleBackColor = true;
+            btn_showexpenses.Click += btn_showexpenses_Click;
+            // 
             // FormTenants
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(370, 143);
+            ClientSize = new Size(370, 187);
+            Controls.Add(btn_showexpenses);
             Controls.Add(btn_logout);
             Controls.Add(btn_showdocuments_T);
             Controls.Add(btn_showincomes_T);
@@ -98,5 +110,6 @@
         private Button btn_showincomes_T;
         private Button btn_showdocuments_T;
         private Button btn_logout;
+        private Button btn_showexpenses;
     }
 }

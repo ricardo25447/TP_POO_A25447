@@ -77,6 +77,7 @@
             btn_showexpenses.TabIndex = 4;
             btn_showexpenses.Text = "Gestão de Despesas";
             btn_showexpenses.UseVisualStyleBackColor = true;
+            btn_showexpenses.Click += btn_showexpenses_Click;
             // 
             // btn_showincomes
             // 

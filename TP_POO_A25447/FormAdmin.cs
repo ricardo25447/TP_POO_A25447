@@ -51,5 +51,12 @@ namespace TP_POO_A25447
         {
 
         }
+
+        private void btn_showexpenses_Click(object sender, EventArgs e)
+        {
+            ExpensesPropertycs formExpensesPropertycs = new ExpensesPropertycs();
+            formExpensesPropertycs.Show();
+            this.Hide(); //hide log in
+        }
     }
 }
