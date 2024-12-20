@@ -49,7 +49,9 @@ namespace TP_POO_A25447
 
         private void btn_showincomes_Click(object sender, EventArgs e)
         {
-
+            IncomeManagement FormsIncomeManagement = new IncomeManagement();
+            FormsIncomeManagement.Show();
+            this.Hide(); //hide log in
         }
 
         private void btn_showexpenses_Click(object sender, EventArgs e)
