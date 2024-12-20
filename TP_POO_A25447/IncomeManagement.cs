@@ -39,7 +39,7 @@ namespace TP_POO_A25447
                 return;
             }
 
-            // Carregar propriedades no ListView a partir do ficheiro properties.txt
+            // load properties on listview
             var lines = File.ReadAllLines(propertiesPath);
             listview_properties.Items.Clear();
 
