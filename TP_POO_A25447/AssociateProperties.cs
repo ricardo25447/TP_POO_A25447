@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +11,21 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TP_POO_A25447
 {
+    /// <summary>
+    /// Form for managing property associations and contracts
+    /// Allows users to view properties and create tenant contracts
+    /// </summary>
     public partial class AssociateProperties : Form
     {
+        /// <summary>
+        /// File path where property information is stored
+        /// </summary>
         private string propertiesPath = @"C:\TP_POO_A25447\properties.txt";
+
+        /// <summary>
+        /// Initializes a new instance of the AssociateProperties form
+        /// Sets up the ListView control for displaying properties
+        /// </summary>
         public AssociateProperties()
         {
             InitializeComponent();
@@ -25,8 +37,12 @@ namespace TP_POO_A25447
             listview_properties.Columns.Add("Imóveis:", 865, HorizontalAlignment.Left); // fix scroll
         }
 
-
-
+        /// <summary>
+        /// Handles the click event of the Back button
+        /// Returns to the Admin form
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Event data</param>
         private void btn_back_Click(object sender, EventArgs e)
         {
             FormAdmin formFormAdmin = new FormAdmin();
@@ -34,6 +50,12 @@ namespace TP_POO_A25447
             this.Hide(); //hide log in
         }
 
+        /// <summary>
+        /// Handles the click event of the Add Contract button
+        /// Opens the TenantContract form for the selected property
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Event data</param>
         private void btn_addcontract_Click(object sender, EventArgs e)
         {
             if (listview_properties.SelectedItems.Count == 0)
@@ -50,6 +72,12 @@ namespace TP_POO_A25447
             formAddContract.ShowDialog();
         }
 
+        /// <summary>
+        /// Handles the form load event
+        /// Loads and displays all available properties from the file
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Event data</param>
         private void FormManageContracts_Load(object sender, EventArgs e)
         {
             if (!File.Exists(propertiesPath))
@@ -73,6 +101,12 @@ namespace TP_POO_A25447
             }
         }
 
+        /// <summary>
+        /// Handles the click event of the Active Contracts button
+        /// Displays all active contracts for the selected property
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Event data</param>
         private void btn_activecontracts_Click(object sender, EventArgs e)
         {
             string contractsPath = @"C:\TP_POO_A25447\contracts.txt";

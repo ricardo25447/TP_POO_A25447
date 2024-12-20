@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace TP_POO_A25447
 {
+    /// <summary>
+    /// Represents a real estate property with its characteristics and associated data
+    /// </summary>
     public class Property
     {
-        // Private attributes for encapsulation
-        private string _propertyType; // Stores the type of the property
-        private double _propertyPrice; // Stores the price of the property
+        // Private fields for encapsulation
+        private string _propertyType; // Type of the property (e.g., apartment, house)
+        private double _propertyPrice; // Price of the property in the current currency
 
-        // Public property for accessing and setting PropertyType with validation
+        /// <summary>
+        /// Gets or sets the type of the property
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when property type is null or empty</exception>
         public string PropertyType
         {
             get { return _propertyType; }
@@ -27,7 +33,10 @@ namespace TP_POO_A25447
             }
         }
 
-        // Public property for accessing and setting PropertyPrice with validation
+        /// <summary>
+        /// Gets or sets the price of the property
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when property price is less than or equal to zero</exception>
         public double PropertyPrice
         {
             get { return _propertyPrice; }
@@ -42,15 +51,43 @@ namespace TP_POO_A25447
             }
         }
 
-        // Public attributes for related data (kept public for simplicity)
-        public List<Income> IncomeAmountPaid { get; set; } // Stores income records related to the property
-        public List<District> ID_District { get; set; } // Stores districts associated with the property
-        public List<Parish> ID_Parish { get; set; } // Stores parishes associated with the property
-        public List<Municipality> ID_Municipality { get; set; } // Stores municipalities associated with the property
-        public List<Expenses> Expenses { get; set; } // Stores expense records related to the property
-        public List<Document> Documents { get; set; } // Stores documents related to the property
+        // Associated data collections
+        /// <summary>
+        /// List of income records associated with this property
+        /// </summary>
+        public List<Income> IncomeAmountPaid { get; set; }
 
-        // Constructor to initialize the Property object
+        /// <summary>
+        /// List of districts where the property is located
+        /// </summary>
+        public List<District> ID_District { get; set; }
+
+        /// <summary>
+        /// List of parishes where the property is located
+        /// </summary>
+        public List<Parish> ID_Parish { get; set; }
+
+        /// <summary>
+        /// List of municipalities where the property is located
+        /// </summary>
+        public List<Municipality> ID_Municipality { get; set; }
+
+        /// <summary>
+        /// List of expenses associated with this property
+        /// </summary>
+        public List<Expenses> Expenses { get; set; }
+
+        /// <summary>
+        /// List of documents related to this property
+        /// </summary>
+        public List<Document> Documents { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the Property class
+        /// </summary>
+        /// <param name="propertyType">The type of the property</param>
+        /// <param name="propertyPrice">The price of the property</param>
+        /// <exception cref="ArgumentException">Thrown when input parameters are invalid</exception>
         public Property(string propertyType, double propertyPrice)
         {
             // Use the encapsulated properties to ensure validation

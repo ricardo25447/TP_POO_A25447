@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,8 +10,17 @@ using System.Windows.Forms;
 
 namespace TP_POO_A25447
 {
+    /// <summary>
+    /// Form for adding new properties to the system
+    /// Handles property registration with type, price, location, and other details
+    /// </summary>
     public partial class AddProperty : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the AddProperty form
+        /// Sets up the property type dropdown with available options
+        /// </summary>
+        /// <param name="property">Optional parameter for property initialization (not currently used)</param>
         public AddProperty(string property = null)
         {
             InitializeComponent();
@@ -28,10 +37,23 @@ namespace TP_POO_A25447
             dropdown_typeproperty.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Handles the selection change event of the property type dropdown
+        /// Currently not implemented with specific functionality
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Event data</param>
         private void dropdown_typeproperty_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        /// <summary>
+        /// Handles the click event of the Add Property button
+        /// Validates input fields and saves the property information to file
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Event data</param>
         private void btn_addproperty_Click(object sender, EventArgs e)
         {
             // path file
@@ -44,8 +66,6 @@ namespace TP_POO_A25447
             string propertyDistrict = txt_districtproperty.Text.Trim();
             string propertyMunicipality = txt_municipalityproperty.Text.Trim();
             string propertyParish = txt_parishproperty.Text.Trim();
-
-
 
             // verify if textbox's are empties
             if (string.IsNullOrWhiteSpace(propertyType) || string.IsNullOrWhiteSpace(propertyPrice) || string.IsNullOrWhiteSpace(propertyIncome) || string.IsNullOrWhiteSpace(propertyDistrict) || string.IsNullOrWhiteSpace(propertyMunicipality) || string.IsNullOrWhiteSpace(propertyParish))
@@ -78,6 +98,12 @@ namespace TP_POO_A25447
             }
         }
 
+        /// <summary>
+        /// Handles the click event of the Back button
+        /// Returns to the Management Properties form
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Event data</param>
         private void btn_back_Click(object sender, EventArgs e)
         {
             ManagementProperties formManagementProperties = new ManagementProperties();
@@ -85,11 +111,23 @@ namespace TP_POO_A25447
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the click event of label7
+        /// Currently not implemented with specific functionality
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Event data</param>
         private void label7_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the key press event of the property price textbox
+        /// Ensures only numeric input and decimal point are allowed
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Key press event data</param>
         private void txt_priceproperty_KeyPress(object sender, KeyPressEventArgs e)
         {
             // only numbers, backspace and decimal dot
@@ -99,6 +137,12 @@ namespace TP_POO_A25447
             }
         }
 
+        /// <summary>
+        /// Handles the key press event of the property income textbox
+        /// Ensures only numeric input and decimal point are allowed
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">Key press event data</param>
         private void txt_incomeproperty_KeyPress(object sender, KeyPressEventArgs e)
         {
             // only numbers, backspace and decimal dot
