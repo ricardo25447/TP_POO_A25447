@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace TP_POO_A25447
 {
     /// <summary>
-    /// Form for adding new user accounts to the system
+    /// Form for creating new user accounts in the system
     /// Handles user registration with username, password, and CC number
     /// </summary>
     public partial class AddAccount : Form
@@ -28,11 +28,9 @@ namespace TP_POO_A25447
 
 
         /// <summary>
-        /// Handles the click event of the Add Account button
+        /// Handles the add account button click event
         /// Validates input fields and creates a new user account
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Event data</param>
         private void btn_addaccount_Click(object sender, EventArgs e)
         {
             string username = adduser_txt.Text;
@@ -65,11 +63,9 @@ namespace TP_POO_A25447
         }
 
         /// <summary>
-        /// Handles the click event of the Back button
-        /// Prompts for confirmation before returning to the Manage Persons form
+        /// Handles the back button click event
+        /// Prompts for confirmation before returning to the manage persons form
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Event data</param>
         private void btn_back_addaccount_Click(object sender, EventArgs e)
         {
 
@@ -88,21 +84,16 @@ namespace TP_POO_A25447
             }
         }
         /// <summary>
-        /// Handles the text changed event of the password textbox
-        /// Masks the password input with asterisks for security
+        /// Handles password textbox changes
+        /// Masks password input with asterisks for security
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Event data</param>
         private void addpassword_txt_TextChanged(object sender, EventArgs e)
         {
             addpassword_txt.PasswordChar = '*';
         }
         /// <summary>
-        /// Handles the text changed event of the username textbox
-        /// Currently not implemented with specific functionality
+        /// Handles username textbox changes
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Event data</param>
         private void adduser_txt_TextChanged(object sender, EventArgs e)
         {
 

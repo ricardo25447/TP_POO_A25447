@@ -12,7 +12,7 @@ namespace TP_POO_A25447
 {
     /// <summary>
     /// Form for adding new properties to the system
-    /// Handles property registration with type, price, location, and other details
+    /// Handles property details including type, price, location, and monthly income
     /// </summary>
     public partial class AddProperty : Form
     {
@@ -20,7 +20,7 @@ namespace TP_POO_A25447
         /// Initializes a new instance of the AddProperty form
         /// Sets up the property type dropdown with available options
         /// </summary>
-        /// <param name="property">Optional parameter for property initialization (not currently used)</param>
+        /// <param name="property">Optional property parameter (can be null)</param>
         public AddProperty(string property = null)
         {
             InitializeComponent();
@@ -38,22 +38,17 @@ namespace TP_POO_A25447
         }
 
         /// <summary>
-        /// Handles the selection change event of the property type dropdown
-        /// Currently not implemented with specific functionality
+        /// Handles property type dropdown selection changes
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Event data</param>
         private void dropdown_typeproperty_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the click event of the Add Property button
-        /// Validates input fields and saves the property information to file
+        /// Handles the add property button click event
+        /// Validates and saves property information to a file
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Event data</param>
         private void btn_addproperty_Click(object sender, EventArgs e)
         {
             // path file
@@ -99,11 +94,9 @@ namespace TP_POO_A25447
         }
 
         /// <summary>
-        /// Handles the click event of the Back button
-        /// Returns to the Management Properties form
+        /// Handles the back button click event
+        /// Returns to the property management form
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Event data</param>
         private void btn_back_Click(object sender, EventArgs e)
         {
             ManagementProperties formManagementProperties = new ManagementProperties();
@@ -112,22 +105,17 @@ namespace TP_POO_A25447
         }
 
         /// <summary>
-        /// Handles the click event of label7
-        /// Currently not implemented with specific functionality
+        /// Handles label click event
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Event data</param>
         private void label7_Click(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the key press event of the property price textbox
-        /// Ensures only numeric input and decimal point are allowed
+        /// Handles key press events in the price textbox
+        /// Ensures only valid numeric input and decimal point
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Key press event data</param>
         private void txt_priceproperty_KeyPress(object sender, KeyPressEventArgs e)
         {
             // only numbers, backspace and decimal dot
@@ -138,11 +126,9 @@ namespace TP_POO_A25447
         }
 
         /// <summary>
-        /// Handles the key press event of the property income textbox
-        /// Ensures only numeric input and decimal point are allowed
+        /// Handles key press events in the income textbox
+        /// Ensures only valid numeric input and decimal point
         /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">Key press event data</param>
         private void txt_incomeproperty_KeyPress(object sender, KeyPressEventArgs e)
         {
             // only numbers, backspace and decimal dot
