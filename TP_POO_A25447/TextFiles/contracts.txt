@@ -1,0 +1,1 @@
+﻿Imóvel: Tipo de imóvel: Vivenda Geminada T1, Preço do imóvel: 100000, Renda Mensal do Imóvel: 700, Distrito: Braga, Concelho: Famalicão, Freguesia: Delães, Inquilino: Ricardo, CC: 123456789c, Data Início: 03/02/2025, Data Fim: 13/02/2025

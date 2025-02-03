@@ -1,4 +1,0 @@
-Username: Ricardo, Password: 1234, CC: 123456789c
-Username: Rui, Password: 1234, CC: 123456789b
-Username: ##########, Password: dadsadsa, CC: 0
-Username: dasdasds, Password: dsadsadsa, CC: dadasdsa
